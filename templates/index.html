@@ -6,10 +6,11 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<title> Hand Written Digit Recognition using TensorFlow.js </title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="C:\Users\sgoru\Desktop\DigitRecognitionProject\DigitRecognition\chart.min.js"></script>
+	<script src="../static/chart.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >    
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >    
 </head>
+
 <style>
 	.digit-demo-container {
 		background-color: rgb(148, 204, 211);
@@ -72,13 +73,8 @@
 		  } 
 	  }
 </style>
-<body>
-	
-	<script src="C:\Users\sgoru\Desktop\DigitRecognitionProject\DigitRecognition\digit-recognition.js">
-		drawOnCanvas();
-		
-	</script>
 
+<body>
 	<main>
 		<div class="container mt-1">
 			<div class="digit-demo-container">
@@ -90,7 +86,7 @@
 								<button id="clear-button" class="btn btn-dark">Clear</button>
 							</div>
 							<div class="col-12">
-								<button id="predict-button" class="btn btn-dark">Submit</button>
+								<button id="predict-button" class="btn btn-dark">Predict</button>
 							</div>
 						</div>
 						<div class="col-6">
@@ -103,6 +99,6 @@
 			</div>
 		</div>
 	</main>   
-
+	<script type="text/javascript" src="../static/digit-recognition.js"></script>
 </body>
 </html>

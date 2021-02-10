@@ -35,5 +35,5 @@ print('Test accuracy:', test_acc)
 
 
 # save model as tfjs format
-tfjs.converters.save_keras_model(model, 'models')
+tfjs.converters.save_keras_model(model, 'static')
 
