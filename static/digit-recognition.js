@@ -13,7 +13,7 @@ var drawing;
 
 var canvasBox = document.getElementById('canvas_box');
 var canvas    = document.createElement("canvas");
- 
+
 canvas.setAttribute("width", canvasWidth);
 canvas.setAttribute("height", canvasHeight);
 canvas.setAttribute("id", canvasId);
@@ -167,12 +167,12 @@ $("#clear-button").click(async function () {
 });
 
 async function loadModel() {
+    $('#correct').hide();
+    $('#wrong').hide();
     // clear the model variable
     model = undefined; 
     // load the model using a HTTPS request (where you have stored your model files)
-    alert("model loaded");
-    model = await tf.loadLayersModel("models/model.json");
-    
+    model = await tf.loadLayersModel("/static/model.json");
   }
    
   loadModel();
@@ -196,7 +196,6 @@ function preprocessCanvas(image) {
 // predict function 
 //--------------------------------------------
 $("#predict-button").click(async function () {
-    alert("after predict clicked");
     // get image data from canvas
     var imageData = canvas.toDataURL();
  
@@ -205,13 +204,12 @@ $("#predict-button").click(async function () {
  
     // make predictions on the preprocessed image tensor
     let predictions = await model.predict(tensor).data();
-    alert("predictions passed");
     // get the model's prediction results
     let results = Array.from(predictions);
  
     // display the predictions in chart
     $("#result_box").removeClass('d-none');
-    displayChart(results);
+    // displayChart(results);
     displayLabel(results);
 });
 
@@ -221,7 +219,6 @@ $("#predict-button").click(async function () {
 var chart = "";
 var firstTime = 0;
 function loadChart(label, data, modelSelected) {
-    alert("in load chart method");
     var ctx = document.getElementById('chart_box').getContext('2d');
     chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -248,7 +245,6 @@ function loadChart(label, data, modelSelected) {
 // drawing from canvas
 //----------------------------
 function displayChart(data) {
-    alert("displaychart!");
     var select_option = "CNN";
  
     label = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -272,5 +268,21 @@ function displayLabel(data) {
             max = data[i];
         }
     }
+    var answer = document.getElementById("lblAns").textContent;
+    if (answer == maxIndex) {
+        $('#wrong').hide();
+        $('#correct').show();
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
+    else {
+        $('#correct').hide();
+        $('#wrong').show();
+        clickX = new Array();
+        clickY = new Array();
+        clickD = new Array();
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
+
     $(".prediction-text").html("Predicting you draw <b>"+maxIndex+"</b> with <b>"+Math.trunc( max*100 )+"%</b> confidence")
+    
 }
