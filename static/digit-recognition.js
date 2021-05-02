@@ -158,6 +158,7 @@ function drawOnCanvas() {
 // CLEAR CANVAS function
 //------------------------
 $("#clear-button").click(async function () {
+    $('#predict-button').show();
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     clickX = new Array();
     clickY = new Array();
@@ -196,9 +197,8 @@ function preprocessCanvas(image) {
 // predict function 
 //--------------------------------------------
 $("#predict-button").click(async function () {
+    $('#predict-button').hide();
     // get image data from canvas
-    var imageData = canvas.toDataURL();
- 
     // preprocess canvas
     let tensor = preprocessCanvas(canvas);
  
@@ -275,6 +275,7 @@ function displayLabel(data) {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     }
     else {
+        $('#predict-button').show();
         $('#correct').hide();
         $('#wrong').show();
         clickX = new Array();
